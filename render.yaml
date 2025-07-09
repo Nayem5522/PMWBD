@@ -4,11 +4,7 @@ services:
     env: docker
     plan: free
     repo: https://github.com/Nayem5522/PMWBD
-    region: singapore
     dockerfilePath: ./Dockerfile
-    buildCommand: ""
-    startCommand: ""
-    healthCheckPath: /
     envVars:
       - key: WORDPRESS_DB_HOST
         value: db:3306
@@ -18,11 +14,19 @@ services:
         value: wordpresspass
       - key: WORDPRESS_DB_NAME
         value: wordpress
+
   - type: pserv
     name: db
     env: docker
     plan: free
     repo: https://github.com/Nayem5522/PMWBD
-    dockerfilePath: ./Dockerfile
-    buildCommand: ""
-    startCommand: ""
+    dockerfilePath: ./mysql.Dockerfile
+    envVars:
+      - key: MYSQL_DATABASE
+        value: wordpress
+      - key: MYSQL_USER
+        value: wordpressuser
+      - key: MYSQL_PASSWORD
+        value: wordpresspass
+      - key: MYSQL_ROOT_PASSWORD
+        value: rootpass
