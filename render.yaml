@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: wordpress
+    env: docker
+    plan: free
+    repo: https://github.com/Nayem5522/PMWBD
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""
+    startCommand: ""
+    healthCheckPath: /
+    envVars:
+      - key: WORDPRESS_DB_HOST
+        value: db:3306
+      - key: WORDPRESS_DB_USER
+        value: wordpressuser
+      - key: WORDPRESS_DB_PASSWORD
+        value: wordpresspass
+      - key: WORDPRESS_DB_NAME
+        value: wordpress
+  - type: pserv
+    name: db
+    env: docker
+    plan: free
+    repo: https://github.com/Nayem5522/PMWBD
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""
+    startCommand: ""
